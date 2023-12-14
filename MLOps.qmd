@@ -1,0 +1,728 @@
+---
+title: "MLOps"
+subtitle: "The Key to Reproducibility and Good Practices for Effective Models"
+author: "Rodo"
+date: last-modified
+date-format: "DD-MM-YYYY"
+# description: "Sometimes, it is enough to extract specific information from a model and then forget it, but in most cases, the challenge is to bring it to production or allow others to use it. Reproducibility is essential. Without the ability to replicate the results of a study, its findings cannot be trusted. Likewise, if you cannot reproduce a model in a production environment, you are wasting time and resources. \nIn this webinar, we will explore the importance of MLOps and good practices that allow the creation of effective and reproducible models"
+title-block-banner: "#27445C"
+# title-slide-attributes:
+#     data-background-image: figures/TripleTen_Backgrownd.png
+#     data-background-size: contain
+#     data-background-opacity: "0.03"
+format:
+  revealjs:
+    slide-number: true
+    logo: figures/logo_evic_5.png
+    css: logo.css
+    chalkboard: true
+    theme: dark
+  # html:
+  #   embed-resources: true
+  #   smooth-scroll: true
+  #   theme: cosmo
+  #   fontcolor: black
+  #   toc: true
+  #   toc-location: left
+  #   toc-title: Summary
+  #   toc-depth: 3
+  # css: styles.css
+editor: source
+---
+
+<!-- Mi objetivo con esta charla es introducir el concepto de MLOps para los que no lo conozcan y darles herramientas que yo considero útiles para crear modelos reproducibles y escalables -->
+
+## Quién soy
+
+::: {.column .fragment width="30%"}
+![](figures/Foto_Rodo_2.jpg){.center width="167"}
+
+<font size = "6">**Rodolfo Nuñez**
+
+7 Años de experiencia
+
+-   Sr. MLOps Engineer Entel
+-   Tutor de DS y DA en TripleTen
+-   Co-host en_coders
+
+</font>
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="30%"}
+::: r-stack
+![](figures/logo_entel.png){.center .fragment width="167"}
+
+![](figures/TripleTen.jpg){.center .fragment width="167"}
+
+![](figures/Logo_principalEncoders.jpg){.center .fragment width="167"}
+:::
+
+::: {.fragment .fade-up}
+![](figures/twitch_logo.png){.center width="50"}
+
+<font size ="6"> [**\@en_coders**](https://www.twitch.tv/en_coders) </font>
+
+<font size ="4">Los streams son todos los martes de **19:00 a 21:00 hora chilena.**</font>
+:::
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="25%"}
+::: {.fragment .fade-up}
+![](figures/youtube_logo.png){.center width="50"}
+
+<font size ="6"> [**\@en_coders**](https://www.youtube.com/@en_coders) </font>
+
+<font size ="4">Videos de **episodios pasados**</font>
+:::
+
+::: {.fragment .fade-up}
+![](figures/discord_logo.png){.center width="50"}
+
+<font size ="6"> [**https://discord.gg/xuqw3hcg**](https://discord.gg/xuqw3hcg){.uri} </font>
+
+<font size ="4">Comunidad de Discord.</font>
+:::
+
+::: {.fragment .fade-up}
+![](figures/logo_linkedIn.png){.center width="50"}
+
+<font size ="6"> [**\@rodonunez**](https://www.linkedin.com/in/rodonunez/) </font>
+:::
+:::
+
+# Introduction to MLOps
+
+------------------------------------------------------------------------
+
+![](figures/MLOps_with_memes.png){fig-align="center"}
+
+<!-- Partamos con las definiciones. Para todo esto usaré memes, ya que son bastante ilustrativos y muchas veces reflejas los problemas de la vida real. -->
+
+------------------------------------------------------------------------
+
+## Why MLOps
+
+<!-- Before understanding where, who or even what, we need to understand why. What's the pain point? -->
+
+![](figures/why_MLOps.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+![](figures/worked_in_my_machine.webp){fig-align="center"}
+
+## Definition of MLOps
+
+-   MLOps (Machine Learning Operations) is a paradigm that aims to deploy and maintain machine learning models in production reliably and efficiently.
+
+![](figures/ML_Ops_Venn_Diagram.svg.png){fig-align="center"}
+
+## We are all developers
+
+::: r-stack
+![](figures/you_are_a_developer.jpg){.fragment fig-align="center" width="700"}
+
+![](figures/day_39_accepted.jpg){.fragment fig-align="center" width="700"}
+:::
+
+------------------------------------------------------------------------
+
+### Some tasks for MLOps Engineers
+
+-   Integrating Machine Learning and DevOps
+-   End-to-End Model Lifecycle
+-   Automation and Reproducibility
+-   Collaboration and Cross-Team Communication
+-   Continuous Integration and Continuous Delivery (CI/CD)
+-   Monitoring and Model Maintenance
+-   Scalability and Efficiency
+-   Security and Governance
+-   Flexibility and Tooling
+
+------------------------------------------------------------------------
+
+### Integrating Machine Learning and DevOps
+
+![](figures/DevOps.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### End-to-End Model Lifecycle
+
+![MLOps cycle](figures/MLOps_cycle.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Automation and Reproducibility
+
+![4 Rs](figures/reproducibility.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Collaboration and Cross-Team Communication
+
+![Git](figures/in_case_of_fire.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+![Git is not trivial](figures/one_does_nos_simply_git.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Continuous Integration and Continuous Delivery (CI/CD)
+
+![CI/CD](figures/CICD.jpg){fig-align="center"}
+
+<!-- --- -->
+
+<!-- ### Some DevOps concepts -->
+
+<!-- - **Deployment** is when you install a software version on an environment -->
+
+<!-- - **Release** is when you make software available to a user -->
+
+<!-- You could use the word release to describe a package ready for use outside the development team. However, by referring to this as a software version, you can avoid getting into a situation where you release (verb) a release (noun). Instead, you deploy or release a software version. -->
+
+<!-- When DevOps was created, it recognized a natural tension between development and operations. The development team wanted to deploy more often to get new features out, while the operations team wanted to deploy less often to keep the system stable. The goal of DevOps was to resolve this tension. -->
+
+<!-- - **Continuous integration**: is a practice that involves developers making small changes and checks to their code. -->
+
+<!-- - **Continuous delivery**: automates deployment of a release to an environment for staging or testing.  -->
+
+<!-- - **Continuous deployment**: automatically deploys every release through your pipeline (including testing) and to production. -->
+
+<!-- CI and CD stand for continuous integration and continuous delivery/continuous deployment. In very simple terms, CI is a modern software development practice in which incremental code changes are made frequently and reliably. Automated build-and-test steps triggered by CI ensure that code changes being merged into the repository are reliable. The code is then delivered quickly and seamlessly as a part of the CD process. In the software world, the CI/CD pipeline refers to the automation that enables incremental code changes from developers’ desktops to be delivered quickly and reliably to production. -->
+
+------------------------------------------------------------------------
+
+### Monitoring and Model Maintenance
+
+![Deterministic Code](figures/deterministic_code.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+## ![Non-Deterministic Code](figures/ML_Model_Degrades.png){fig-align="center"}
+
+![Essential Signals to Monitor](figures/Essential-Signals-to-Monitor.webp){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Scalability and Efficiency
+
+<!-- ![](figures/scalable_model_ask.jpg){fig-align="center"} -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+![](figures/scale_panik.jpg){fig-align="center"}
+
+<!-- g. Scalability and Efficiency: MLOps provides mechanisms to scale model deployments as needed, making it possible to handle increased workloads or changes in data volume. It also helps organizations optimize resource usage and costs. -->
+
+------------------------------------------------------------------------
+
+### Security and Governance
+
+![](figures/MLOps_Gov_Sec.png){fig-align="center"}
+
+<!-- h. Security and Governance: MLOps addresses security concerns by implementing access controls and encryption to protect sensitive data and models. It also supports governance and compliance by providing audit trails and documentation. -->
+
+------------------------------------------------------------------------
+
+### Flexibility and Tooling
+
+![](figures/tools.webp){fig-align="center"}
+
+<!-- i. Flexibility and Tooling: MLOps is not tied to specific tools or platforms; it's adaptable to a variety of machine learning frameworks and technologies. Various tools and platforms have emerged to support MLOps, and organizations can choose the ones that best fit their needs. -->
+
+<!-- 1.1. Definition of MLOps -->
+
+<!-- Machine Learning Operations (MLOps) is an emerging set of practices and tools that combines machine learning (ML) and software engineering to facilitate the entire lifecycle of ML model development, deployment, monitoring, and management. MLOps aims to streamline and standardize the processes involved in taking a machine learning model from the research and experimentation phase to real-world applications. Here are some key aspects of the definition: -->
+
+<!-- a. Integrating Machine Learning and DevOps: MLOps can be seen as an extension of the DevOps (Development and Operations) philosophy to the field of machine learning. It borrows principles from DevOps, such as automation, collaboration, and continuous improvement, and applies them to the machine learning workflow. -->
+
+<!-- b. End-to-End Model Lifecycle: MLOps encompasses the complete model lifecycle, from data preparation and feature engineering to model training, testing, deployment, and ongoing monitoring. It provides a structured approach to managing these stages efficiently. -->
+
+<!-- c. Automation and Reproducibility: Automation is a key component of MLOps. It emphasizes the automation of repetitive tasks, like model training and deployment, to reduce human error and increase efficiency. Reproducibility is another central aspect, ensuring that the entire process is well-documented and that models can be recreated consistently. -->
+
+<!-- d. Collaboration and Cross-Team Communication: MLOps encourages collaboration among different teams within an organization, including data scientists, machine learning engineers, IT operations, and business stakeholders. Effective communication and collaboration are crucial for successful model deployment and operation. -->
+
+<!-- e. Continuous Integration and Continuous Delivery (CI/CD): Just as in traditional software development, MLOps promotes CI/CD practices. Continuous Integration involves merging code and model changes into a shared repository frequently to detect and address integration issues early. Continuous Delivery ensures that models are deployable at any moment with minimal manual effort. -->
+
+<!-- f. Monitoring and Model Maintenance: MLOps places a strong emphasis on model monitoring in production. This involves tracking model performance, detecting concept drift (changes in the input data distribution), and ensuring that models continue to deliver reliable results over time. If issues are identified, MLOps practices enable quick responses and model updates. -->
+
+<!-- In essence, MLOps is a systematic approach to managing the complete machine learning workflow, ensuring that ML models can be developed, deployed, and maintained in a structured, efficient, and reliable manner. It's about bringing the principles of DevOps to the world of data science, where collaboration, automation, and reproducibility are keys to success. -->
+
+# Good practices
+
+## Avoid Jupyter Notebooks
+
+![HELL NO!](figures/thats_the_neat.jpg){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Quarto
+
+![](figures/Quarto-blog-v3.jpg){fig-align="center"}
+
+## Use Git everyday
+
+![Git is life, git is love](figures/use_git_everyday.jpg){fig-align="center"}
+
+## Project Structure
+
+![](figures/automate-data-science-project-structure.png){fig-align="center"}
+
+## Docker
+
+![](figures/well_ship_your_machine.webp){fig-align="center"}
+
+## Manifiesto de programación
+
+### Valores
+
+::: {.column .fragment width="40%"}
+<font size ="6">
+
+-   Un buen código es resiliente y robusto.
+
+-   Un buen código facilita el traspaso y la continuidad.
+
+-   Un buen código es eficiente.
+
+-   Un buen código permite ocupar distintas herramientas y lenguaje de programación.
+
+</font>
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column .fragment width="40%"}
+<font size ="6">
+
+-   Un buen código permite un sencillo paso a producción.
+
+-   Un buen código pertenece a una cultura en común.
+
+-   Un buen código sigue una estructura que, a la vez, es flexible.
+
+-   Un buen código genera valor al cliente.
+
+-   Un buen código toma tiempo.
+
+</font>
+:::
+
+------------------------------------------------------------------------
+
+### Buenas Prácticas y Patrones de programación.
+
+#### Técnicas Esenciales
+
+::: {.column .fragment width="40%"}
+<font size ="6">
+
+-   Usar una estructura de carpetas y scripts.
+
+-   Usar nombres descriptivos para las variables.
+
+-   Comentar los códigos.
+
+-   Hacer buen uso de las funciones.
+
+</font>
+:::
+
+::: {.column .fragment width="40%"}
+<font size ="6">
+
+-   Usar librerías preexistentes.
+
+-   Modularizar los proyectos.
+
+-   Saber cuándo ocupar scripts o notebooks.
+
+-   Conocer los distintos usos de los "Integrated development environment" (IDE).
+
+</font>
+:::
+
+------------------------------------------------------------------------
+
+#### Técnicas secundarias
+
+::: {.column .fragment width="40%"}
+<font size ="6">
+
+-   No usar cadenas de operaciones largas.
+
+-   No sobrescribir variables cuando el dataset es pequeño.
+
+-   Utilizar formatos eficientes y comunes para guardar la data.
+
+-   Evaluación del BackUp.
+
+</font>
+:::
+
+::: {.column .fragment width="40%"}
+<font size ="6">
+
+-   Estructura de carpetas poco profunda.
+
+-   Ocupar Ambientes Virtuales.
+
+-   Parametrizar scripts.
+
+-   Nombre de los archivos a crear.
+
+-   Buen uso de los recursos: Memoria, CPU y Tiempo.
+
+</font>
+:::
+
+------------------------------------------------------------------------
+
+#### Técnicas terciarias
+
+<font size ="6">
+
+-   Code styling.
+
+-   Test Unitarios.
+
+-   Contenerizar en Docker.
+
+-   Tener mensaje de warning y errores customizados.
+
+-   Resolver los warnings de los códigos lo antes posible.
+
+</font>
+
+## Many more
+
+![](figures/please-tell-me-more-7596-1.jpg){fig-align="center"}
+
+## For more related topics:
+
+::: {.column width="40%"}
+::: {.fragment .fade-up}
+![](figures/twitch_logo.png){.center width="50"}
+
+<font size ="6"> [**\@en_coders**](https://www.twitch.tv/en_coders) </font>
+
+<font size ="4">Los streams son todos los martes de **19:00 a 21:00 hora chilena.**</font>
+:::
+
+::: {.fragment .fade-up}
+![](figures/youtube_logo.png){.center width="50"}
+
+<font size ="6"> [**\@en_coders**](https://www.youtube.com/@en_coders) </font>
+
+<font size ="4">Videos de **episodios pasados**</font>
+:::
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="40%"}
+::: {.fragment .fade-up}
+![](figures/discord_logo.png){.center width="50"}
+
+<font size ="6"> [**https://discord.gg/xuqw3hcg**](https://discord.gg/xuqw3hcg){.uri} </font>
+
+<font size ="4">Comunidad de Discord.</font>
+:::
+
+::: {.fragment .fade-up}
+![](figures/logo_linkedIn.png){.center width="50"}
+
+<font size ="6"> [**\@rodonunez**](https://www.linkedin.com/in/rodonunez/) </font>
+:::
+:::
+
+<!-- ## Why MLOps is essential in model development -->
+
+<!-- -   Bridging the Gap Between Data Science and Operations -->
+
+<!-- -   Model Scalability and Stability -->
+
+<!-- -   Version Control and Reproducibility -->
+
+<!-- -   Continuous Improvement and Adaptation -->
+
+<!-- -   Risk Mitigation -->
+
+<!-- -   Compliance and Governance -->
+
+<!-- 1.2. Why MLOps is essential in model development -->
+
+<!-- Machine Learning has gained immense popularity in various domains, from finance to healthcare and from retail to autonomous vehicles. Organizations and researchers are increasingly relying on ML models to make predictions, automate tasks, and gain valuable insights from data. However, the journey from building a promising model in a research environment to deploying it in a real-world production system is not straightforward. This is where MLOps plays a crucial role. Here's why it's so essential: -->
+
+<!-- a. Bridging the Gap Between Data Science and Operations: MLOps bridges the gap between data science and IT operations. Data scientists and machine learning engineers typically focus on model creation, whereas IT operations teams manage the deployment, scaling, and maintenance of applications. MLOps provides a framework for collaboration between these teams, ensuring that models are effectively deployed and maintained in a production environment. -->
+
+<!-- b. Model Scalability and Stability: Building a machine learning model that works well on a local machine is one thing, but ensuring that it performs reliably at scale in a production environment is another challenge. MLOps practices help in the scaling of models, monitoring their performance, and ensuring their stability, even as the data and the business environment evolve. -->
+
+<!-- c. Version Control and Reproducibility: MLOps emphasizes version control for both data and models. This is crucial for reproducibility, a key component of scientific research and data-driven decision-making. With proper versioning, you can always recreate the exact conditions and configurations that led to a particular model, making it possible to verify and reproduce results. -->
+
+<!-- d. Continuous Improvement and Adaptation: In a rapidly changing world, models need to adapt and improve over time. MLOps encourages a culture of continuous improvement. It enables the automated retraining of models with new data, the introduction of model updates to address changing business needs, and the monitoring of model performance to detect issues and drift. -->
+
+<!-- e. Risk Mitigation: Deploying machine learning models in critical applications without proper monitoring and maintenance can be risky. MLOps helps mitigate these risks by providing a systematic approach to monitoring, troubleshooting, and rollback mechanisms if issues arise. -->
+
+<!-- f. Compliance and Governance: Many industries are subject to regulations and compliance requirements, especially when handling sensitive data. MLOps ensures that models are developed and deployed in a way that complies with these regulations. It provides the necessary audit trails and documentation to meet governance standards. -->
+
+<!-- In summary, MLOps is essential in model development because it ensures that the promising models created by data scientists become practical, scalable, stable, and compliant solutions that can be trusted in real-world applications. It's the bridge that transforms innovative ideas into impactful, reliable systems. -->
+
+<!-- ## Objectives and benefits of implementing MLOps -->
+
+<!-- -   Improved Efficiency and Productivity -->
+
+<!-- -   Enhanced Collaboration and Communication -->
+
+<!-- -   Reproducibility and Accountability -->
+
+<!-- -   Scalability and Flexibility -->
+
+<!-- -   Reduced Risk and Improved Model Reliability -->
+
+<!-- -   Automation of Deployment and Maintenance -->
+
+<!-- -   Compliance and Governance -->
+
+<!-- -   Faster Time-to-Value -->
+
+<!-- -   Continuous Improvement -->
+
+<!-- -   Resource Optimization -->
+
+<!-- 1.3. Objectives and Benefits of Implementing MLOps -->
+
+<!-- Implementing MLOps in machine learning (ML) model development offers a wide range of objectives and benefits that are crucial for organizations and data science teams. Here's a more detailed exploration of what MLOps aims to achieve and the advantages it provides: -->
+
+<!-- a. Improved Efficiency and Productivity: -->
+
+<!-- Objective: MLOps seeks to streamline and automate the various stages of the ML model development lifecycle, reducing manual, time-consuming tasks. -->
+
+<!-- Benefits: This results in increased efficiency, faster model deployment, and more time for data scientists and engineers to focus on innovation and model improvement. -->
+
+<!-- b. Enhanced Collaboration and Communication: -->
+
+<!-- Objective: MLOps fosters collaboration among cross-functional teams, including data scientists, machine learning engineers, IT operations, and business stakeholders. -->
+
+<!-- Benefits: Improved communication and collaboration lead to better alignment of business objectives with ML model development, ensuring that models meet real-world needs. -->
+
+<!-- c. Reproducibility and Accountability: -->
+
+<!-- Objective: MLOps emphasizes version control and documentation, enabling the reproduction of results and accountability for model development processes. -->
+
+<!-- Benefits: Reproducibility enhances the credibility of ML research and decision-making, making it easier to validate findings and meet regulatory requirements. -->
+
+<!-- d. Scalability and Flexibility: -->
+
+<!-- Objective: MLOps enables the seamless scaling of ML models to accommodate changing data volumes and application requirements. -->
+
+<!-- Benefits: Organizations can adapt to evolving business needs and handle larger workloads without major disruptions, all while optimizing resource utilization. -->
+
+<!-- e. Reduced Risk and Improved Model Reliability: -->
+
+<!-- Objective: MLOps incorporates monitoring and maintenance practices to detect model performance issues and address them promptly. -->
+
+<!-- Benefits: Proactive monitoring minimizes the risk of deploying faulty models, ensuring that they continue to provide accurate and reliable predictions in production. -->
+
+<!-- f. Automation of Deployment and Maintenance: -->
+
+<!-- Objective: MLOps automates deployment, testing, and maintenance processes, reducing the potential for human error. -->
+
+<!-- Benefits: Automation streamlines the deployment of models into production, making it less error-prone and more efficient. -->
+
+<!-- g. Compliance and Governance: -->
+
+<!-- Objective: MLOps supports compliance with regulations and governance standards by maintaining thorough records and security measures. -->
+
+<!-- Benefits: Organizations can confidently handle sensitive data and meet legal and ethical requirements. -->
+
+<!-- h. Faster Time-to-Value: -->
+
+<!-- Objective: MLOps aims to accelerate the time it takes to turn an ML model concept into a value-generating application. -->
+
+<!-- Benefits: Faster time-to-value translates to quicker realization of business benefits and competitive advantages. -->
+
+<!-- i. Continuous Improvement: -->
+
+<!-- Objective: MLOps encourages a culture of continuous model improvement by enabling automated retraining and updates. -->
+
+<!-- Benefits: Models can adapt to changing data and business conditions, maintaining their relevance and accuracy over time. -->
+
+<!-- j. Resource Optimization: -->
+
+<!-- Objective: MLOps helps organizations optimize resource allocation, reducing unnecessary costs. -->
+
+<!-- Benefits: Resource optimization contributes to cost savings and efficient utilization of computing and storage resources. -->
+
+<!-- In summary, the objectives and benefits of implementing MLOps in machine learning model development are multifaceted. They encompass efficiency, collaboration, accountability, reliability, automation, compliance, and much more. MLOps provides a structured approach that not only improves the management of ML models but also leads to more effective, reliable, and business-relevant AI solutions. -->
+
+<!-- # Reproducibility in Machine Learning -->
+
+<!-- ## The importance of reproducibility in research and industry -->
+
+<!-- -   Scientific Credibility -->
+
+<!-- -   Building on Existing Research -->
+
+<!-- -   Error Detection and Correction -->
+
+<!-- -   Trust in Data-Driven Decision-Making -->
+
+<!-- -   Regulatory Compliance -->
+
+<!-- -   Debugging and Troubleshooting -->
+
+<!-- -   Model Governance -->
+
+<!-- -   Ethical and Legal Considerations -->
+
+<!-- -   Confidence in Findings and Decisions -->
+
+<!-- 2.1. Importance of Reproducibility in Research and Industry -->
+
+<!-- Reproducibility is a foundational principle in both scientific research and industrial applications of machine learning. It refers to the ability to recreate and verify the results of a study or experiment, ensuring that they can be consistently and independently reproduced by other researchers or practitioners. Here's a deeper exploration of why reproducibility is crucial: -->
+
+<!-- a. Scientific Credibility: -->
+
+<!-- Importance: In the realm of scientific research, credibility is paramount. Without reproducibility, it is difficult to trust the findings and conclusions of a study. Peer-reviewed journals, academic institutions, and the scientific community as a whole rely on the ability to validate and replicate experimental results. -->
+
+<!-- b. Building on Existing Research: -->
+
+<!-- Importance: Scientific progress is often built on the work of previous researchers. Reproducibility allows others to build on existing research, using it as a foundation for new discoveries and advancements in various fields, including healthcare, climate science, and social sciences. -->
+
+<!-- c. Error Detection and Correction: -->
+
+<!-- Importance: Reproducing results helps identify errors, inconsistencies, or biases in the original study. This process is essential for correcting and improving research, preventing false conclusions from becoming widely accepted, and ensuring the accuracy of findings. -->
+
+<!-- d. Trust in Data-Driven Decision-Making: -->
+
+<!-- Importance: In industry, data-driven decision-making is increasingly prevalent. Companies rely on data analysis and machine learning models to make crucial decisions about product development, marketing, resource allocation, and more. Reproducible models and results instill confidence in these decisions, reducing business risks. -->
+
+<!-- e. Regulatory Compliance: -->
+
+<!-- Importance: In many industries, such as finance and healthcare, regulatory bodies require that data analysis and model development follow strict guidelines. Reproducibility is often a regulatory requirement, ensuring that decisions made based on data are well-documented and verifiable. -->
+
+<!-- f. Debugging and Troubleshooting: -->
+
+<!-- Importance: In the context of machine learning and AI, reproducibility plays a significant role in debugging and troubleshooting models. When an issue arises in a machine learning pipeline or model, being able to reproduce the same conditions is critical for diagnosing and resolving the problem effectively. -->
+
+<!-- g. Model Governance: -->
+
+<!-- Importance: Model governance is increasingly important as machine learning models are integrated into various applications. Reproducibility is a key component of model governance, allowing organizations to trace model development, ensure compliance, and manage model versions effectively. -->
+
+<!-- h. Ethical and Legal Considerations: -->
+
+<!-- Importance: Data privacy and ethical considerations are paramount. Reproducibility helps demonstrate transparency in data handling and model development, addressing concerns about potential bias, discrimination, or misuse of data. -->
+
+<!-- i. Confidence in Findings and Decisions: -->
+
+<!-- Importance: Whether in academia or industry, confidence in findings, predictions, and decisions is directly tied to the ability to reproduce results. When results are reproducible, stakeholders can trust that the data and models are reliable and have been rigorously tested. -->
+
+<!-- In essence, reproducibility serves as the cornerstone of trustworthy research and dependable data-driven decision-making. It ensures that scientific findings are credible, that models used in industry are reliable, and that ethical and regulatory standards are upheld. Without reproducibility, the foundation of data science and machine learning would be significantly weakened, undermining the impact of these disciplines on society and business. -->
+
+<!-- ## Challenges of reproducibility in Machine Learning -->
+
+<!-- ## How the lack of reproducibility affects result reliability -->
+
+<!-- # Good Practices in Model Development -->
+
+<!-- ## Experimental design and variable control -->
+
+<!-- ## Data splitting: training, validation, and testing -->
+
+<!-- ## Feature engineering and data preprocessing -->
+
+<!-- ## Algorithm and model selection -->
+
+<!-- ## Model evaluation and performance metrics -->
+
+<!-- # MLOps in Practice -->
+
+<!-- ## Continuous Integration (CI) and Continuous Delivery (CD) in Machine Learning -->
+
+<!-- ## Containers and model orchestration -->
+
+<!-- ## Process automation: from development to production deployment -->
+
+<!-- ## Monitoring and model maintenance in production -->
+
+<!-- # Case Studies -->
+
+<!-- ## Examples of MLOps implementation in real projects -->
+
+<!-- ## Lessons learned and best practices observed in successful projects -->
+
+<!-- # Tools and Resources -->
+
+<!-- ## Key tools and technologies in the MLOps ecosystem -->
+
+<!-- ## Resources for further learning about MLOps and best practices in Machine Learning -->
+
+<!-- # Questions and Discussion -->
+
+<!-- ## Interactive session to answer questions and discuss topics related to MLOps -->
+
+<!-- ## Share experiences and challenges from attendees -->
+
+<!-- # Conclusions and Closing -->
+
+<!-- ## Recap of the key points from the workshop -->
+
+<!-- ## The importance of implementing MLOps in creating effective and reproducible models -->
+
+<!-- ## Next steps and resources for further developing MLOps skills -->
+
+<!-- # Apendix -->
+
+# References
+
+![](figures/noted.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+-   [Wikipedia/MLOps](https://en.wikipedia.org/wiki/MLOps){.uri}
+-   [Re\*\*\*\*bility](https://danielskatzblog.wordpress.com/2016/01/13/rebility/){.uri}
+-   [Defining MLOps as Simply As Possible --- "What is MLOps?" --- Part 2](https://medium.com/kitchen-sink-data-science/defining-mlops-as-simply-as-possible-what-is-mlops-part-2-ef00c6f6ed59){.uri}
+-   [A layered approach to MLOps](https://medium.com/data-science-at-microsoft/a-layered-approach-to-mlops-d935beefca2e){.uri}
+-   [Meme Git Compilation](https://medium.com/@lulu.ilmaknun.q/kompilasi-meme-git-e2fe49c6e33e)
+-   [What is CI/CD- Continuous Integration and Continuous Deployment Explained](https://www.systango.com/blog/what-is-ci-and-cd){.uri}
+
+------------------------------------------------------------------------
+
+-   [The difference between deployments and releases](https://octopus.com/devops/continuous-delivery/deployments-vs-releases/){.uri}
+-   [Continuous Delivery vs. Deployment: How They're Different + When to Use Each](https://www.puppet.com/blog/continuous-delivery-vs-deployment){.uri}
+-   [CI CD](https://www.synopsys.com/glossary/what-is-cicd.html){.uri}
+-   [A Comprehensive Guide on How to Monitor Your Models in Production](https://neptune.ai/blog/how-to-monitor-your-models-in-production-guide){.uri}
+-   [What is DevOps: Free ebook](https://www.knowledgetrain.co.uk/it/devops/devops-training/what-is-devops){.uri}
+-   [How to Maintain and Scale MLOps Pipeline - Beginner's Guide](https://blog.nimblebox.ai/mlops-maintain-scale){.uri}
+
+------------------------------------------------------------------------
+
+-   [A Comprehensive Guide on MLOps for Machine Learning Engineering](https://www.analyticsvidhya.com/blog/2022/03/a-comprehensive-guide-on-mlops-for-machine-learning-engineering/){.uri}
+-   [MLOps: Development Infrastructure and Tooling](https://medium.com/aiguys/mlops-development-infrastructure-and-tooling-acb53b5fe28e){.uri}
+-   [Quarto at Work: Streamline Reports and Share Insights](https://posit.co/blog/quarto-at-work/){.uri}
+-   [How to Automate Your Data Science Project Structure in 3 Easy Steps](https://builtin.com/data-science/automate-data-science-project-structure){.uri}
+-   [Clean Code - Uncle Bob](https://www.youtube.com/watch?v=7EmboKQH8lM){.uri}
+-   [\@en_coders](https://www.youtube.com/)
+-   Documentación interna
+
+# Cya
+
+![Thx for listening / reading](figures/wong.webp){fig-align="center"}
+
+# Questions?
+
+<!-- Este temario proporcionará a los asistentes una comprensión sólida de MLOps, la importancia de la reproducibilidad en Machine Learning y las mejores prácticas para desarrollar modelos efectivos. Además, les permitirá explorar herramientas y casos de estudio reales para una comprensión más práctica de la implementación de MLOps en proyectos de Machine Learning. -->
