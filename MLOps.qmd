@@ -447,7 +447,17 @@ editor: source
 
 <font size ="6"> [**\@rodonunez**](https://www.linkedin.com/in/rodonunez/) </font>
 :::
+
+::: {.fragment .fade-up}
+![](figures/github-logo_2.png){.center width="50"}
+
+<font size ="6"> [**\@rodo-nunez**](https://github.com/rodo-nunez) </font>
 :::
+
+:::
+
+
+
 
 <!-- ## Why MLOps is essential in model development -->
 
